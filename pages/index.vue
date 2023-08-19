@@ -1,3 +1,6 @@
+<script setup lang="ts">
+    import News from '~/components/top/News.vue' // 小文字？
+</script>
+
 <template>
-    <h1>top</h1>
 </template>
