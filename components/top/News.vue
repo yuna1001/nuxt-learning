@@ -1,5 +1,16 @@
 <script setup lang="ts">
-    import NewsItem from '~/components/top/NewsItem.vue'
+interface NewsItem {
+    id: number
+    date: string
+    category: string
+    title: string
+    content: string
+}
+
+const props = defineProps<{
+    newsItems: NewsItem[]
+}>()
+
 </script>
 
 <template>
@@ -11,7 +22,7 @@
             </div>
             <div class="items-end">
                 <ul class="flex items-end border-b-2 mr-0">
-                    <!-- TODO 動的に -->
+                    <!-- TODO リンク先 -->
                     <li><NuxtLink to="/">すべて</NuxtLink></li>
                     <li><NuxtLink to="/">ニュース</NuxtLink></li>
                     <li><NuxtLink to="/">アプリリリース</NuxtLink></li>
@@ -21,12 +32,9 @@
         </div>
 
         <div>
-            <!-- TODO 動的に -->
-            <NuxtLink to="/"><NewsItem /></NuxtLink>
-            <NuxtLink to="/"><NewsItem /></NuxtLink>
-            <NuxtLink to="/"><NewsItem /></NuxtLink>
-            <NuxtLink to="/"><NewsItem /></NuxtLink>
-            <NuxtLink to="/"><NewsItem /></NuxtLink>
+            <div v-for="newsItem in newsItems">
+                <NuxtLink to="/"><TopNewsItem :newsItem="newsItem" /></NuxtLink>
+            </div>
         </div>
     </div>
 </template>
